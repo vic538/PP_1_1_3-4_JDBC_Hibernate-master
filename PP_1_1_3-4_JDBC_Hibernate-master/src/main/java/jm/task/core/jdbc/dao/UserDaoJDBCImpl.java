@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
 
-    Connection conn = new Util().getConnection();
+    private Connection conn = new Util().getConnection();
 
     public UserDaoJDBCImpl() {
 
@@ -19,7 +19,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Statement stmt = conn.createStatement()) {
             stmt.execute("create table if not exists mavi(id bigint primary key auto_increment, name varchar(50), lastName varchar(50), age tinyint)");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
@@ -28,7 +28,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Statement stmt = conn.createStatement()) {
             stmt.execute("DROP TABLE IF EXISTS MAVI");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
@@ -40,7 +40,7 @@ public class UserDaoJDBCImpl implements UserDao {
             ps.setByte(3,age);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
@@ -49,7 +49,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (PreparedStatement ps = conn.prepareStatement("delete from mavi where id = ?")) {
             ps.setLong(1, id);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
@@ -69,7 +69,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 list.add(user);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         return list;
@@ -79,7 +79,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Statement stmt = conn.createStatement()){
             stmt.execute("delete from mavi");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
 

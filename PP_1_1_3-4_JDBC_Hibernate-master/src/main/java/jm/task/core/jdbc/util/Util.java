@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class Util {
 
-    private final String URL = "jdbc:mysql://127.0.0.1:3306/kataacademy";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/kataacademy";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
 
     public Connection getConnection() {
         Connection conn = null;
