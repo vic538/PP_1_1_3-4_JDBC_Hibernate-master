@@ -19,8 +19,8 @@ public class Util {
 
 
         } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-
+    return conn;
     }
 }
