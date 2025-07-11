@@ -33,7 +33,7 @@ public class Util {
     return conn;
     }
 
-    public static SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
@@ -41,23 +41,16 @@ public class Util {
                 properties.setProperty("hibernate.connection.url", URL);
                 properties.setProperty("hibernate.connection.username", USERNAME);
                 properties.setProperty("hibernate.connection.password", PASSWORD);
-                properties.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+                properties.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
                 properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
                 properties.setProperty("hibernate.show_sql", "true");
                 properties.setProperty("hibernate.format_sql", "true");
-                properties.setProperty("hibernate.hbm2ddl.auto", "create");
-                properties.setProperty("hibernate.use_sql_comments", "true");
-                properties.setProperty("hibernate.format_sql_comments", "true");
+                properties.setProperty("hibernate.hbm2ddl.auto", "update");
 
                 configuration.setProperties(properties);
                 configuration.addAnnotatedClass(User.class);
-
                 StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
